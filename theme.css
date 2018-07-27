@@ -1,0 +1,46 @@
+body{
+  background-image: url("../assets/bg.jpg");
+  background-size: cover;
+}
+.signup{
+  margin: 0 auto;
+  margin-top: 10%;
+  background-color: rgba(0,0,0,.7);
+  padding:25px;
+  width: 320px;
+  color: white;
+  border-radius: 1em;
+
+}
+.signup input[type='text'], .signup input[type='password'], .signup input[type='email']{
+  display: block;
+  border: none;
+  border-bottom: 1px solid white;
+  outline: none;
+  margin-bottom: 25px;
+  width: 100%;
+  background-color: rgba(50,50,50,.0);
+  color: white;
+
+
+}
+.signup label{
+  font-size: 12px;
+}
+#btn0{
+  display: inline;
+}
+::placeholder{
+  color: white;
+  font-size: 12px;
+}
+.form-inline input[type='text'], .form-inline input[type='password']{
+  border: none;
+  border-bottom: 1px solid white;
+  outline: none;
+  background-color: rgba(50,50,50,.0);
+  color: white;
+  margin-right: 15px;
+
+
+}
