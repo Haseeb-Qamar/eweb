@@ -5,16 +5,15 @@
     <link rel="stylesheet" href="bs/css/bootstrap.css">
     <link rel="stylesheet" href="stylesheet/theme.css">
     <script type="text/javascript" src="bs/js/bootstrap.js">
-
     </script>
     <title>Login</title>
   </head>
   <body>
     <nav class="navbar navbar-default justify-content-between" style="background-color:rgba(0,0,0,.9);color:white;">
   <a class="navbar-brand">E-WEB</a>
-  <form class="form-inline">
-    <input type="text" name="" value="" placeholder="UserName">
-    <input type="password" name="" value="" placeholder="Password">
+  <form class="form-inline" method="post" action="script_login.php">
+    <input type="text" name="uname" value="" placeholder="UserName">
+    <input type="password" name="password" value="" placeholder="Password">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
   </form>
 </nav>
