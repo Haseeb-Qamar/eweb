@@ -1,14 +1,21 @@
 <!DOCTYPE html>
+<?php
+    
+    if(isset($_GET['msg'])){
+    $msg = $_GET['msg'];
+    }else $msg = 0;
+    
+?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="bs/css/bootstrap.css">
-    <link rel="stylesheet" href="stylesheet/theme.css">
+    <link rel="stylesheet" href="theme.css">
     <script type="text/javascript" src="bs/js/bootstrap.js">
     </script>
     <title>Login</title>
   </head>
-  <body>
+  <body onload="starter()">
     <nav class="navbar navbar-default justify-content-between" style="background-color:rgba(0,0,0,.9);color:white;">
   <a class="navbar-brand">E-WEB</a>
   <form class="form-inline" method="post" action="script_login.php">
@@ -20,20 +27,35 @@
     <div class="container">
       <div class="row">
         <div class="signup">
-          <p class="text-center">Sign-Up</p>
-          <div class="inputs">
-
-            <input type="text" name="fn" value="" placeholder="First Name">
-
-            <input type="text" name="ln" value="" placeholder="Last Name">
-
-            <input type="password" name="" value="" placeholder="Password">
-
-            <input type="email" name="email" value="" placeholder="Email">
-            <p class="text-center"><input id="btn0" type="submit" name="" value="Sign-Up" class="btn btn-outline-light btn-sm"></p>
-          </div>
+          <p class="text-center headings">Sign-Up</p>
+              <form action="script_add_user.php" method="post"> 
+            <input type="text" name="fn" value="" required autocomplete="off" >
+            <label for="fn">First Name</label>
+            <input type="text" name="ln" value="" required autocomplete="off">
+            <label for="ln">Last Name</label>
+            <input type="password" name="pwd" value="" required autocomplete="off">
+            <label for="pwd">Password</label>
+            <input type="text" name="email" value="" required autocomplete="off">
+            <label for="email">Email</label>
+            <p class="text-center"><span style="display:none;" id="msg"></span> <br><input id="btn0" type="submit" name="" value="Sign-Up" class="btn btn-outline-light btn-sm"></p></form>
+            
+          
+          
         </div>
       </div>
     </div>
+    <script>
+    function starter(){
+        
+    var code = <?php echo $msg ?>;
+    
+    if(code == 1){
+        var m = document.getElementById('msg');  
+        m.innerHTML='Account Does Not Exist!';
+        m.style.display="inline";
+    }    
+    }
+    
+    </script>
   </body>
 </html>

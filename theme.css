@@ -1,6 +1,9 @@
 body{
-  background-image: url("../assets/bg.jpg");
+  background-image: url("assets/bg.jpg");
   background-size: cover;
+}
+.headings{
+    font-size: 30px;
 }
 .signup{
   margin: 0 auto;
@@ -9,30 +12,31 @@ body{
   padding:25px;
   width: 320px;
   color: white;
-  border-radius: 1em;
+  border: 5px solid black;
+  
 
 }
 .signup input[type='text'], .signup input[type='password'], .signup input[type='email']{
   display: block;
+  position: relative;
   border: none;
-  border-bottom: 1px solid white;
-  outline: none;
-  margin-bottom: 25px;
+  
+  border-bottom: 2px solid white;
   width: 100%;
-  background-color: rgba(50,50,50,.0);
+  background: none;
   color: white;
+  z-index: 2;
 
 
 }
-.signup label{
-  font-size: 12px;
-}
+
 #btn0{
   display: inline;
+  margin-top: 1%;
 }
 ::placeholder{
   color: white;
-  font-size: 12px;
+  
 }
 .form-inline input[type='text'], .form-inline input[type='password']{
   border: none;
@@ -41,6 +45,30 @@ body{
   background-color: rgba(50,50,50,.0);
   color: white;
   margin-right: 15px;
-
-
+}
+label{
+    display: block;
+    position: relative;
+    top: -20px;
+    left: 0px;
+    z-index: 1;
+    transition: all 0.3s ease;
+    font-size: 12px;
+    pointer-events: none;
+}
+input:focus, input:valid{
+    outline: none;
+    
+    
+    
+}
+input:focus + label, input:valid + label{
+    top: -40px;
+    font-size: 11px;
+    color: aqua;
+    
+    
+}
+#welcome{
+    width: 100$;
 }
