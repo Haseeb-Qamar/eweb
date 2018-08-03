@@ -13,10 +13,17 @@ body{
   width: 320px;
   color: white;
   border: 5px solid black;
-  
-
 }
-.signup input[type='text'], .signup input[type='password'], .signup input[type='email']{
+.login{
+  margin: 0 auto;
+  margin-top: 10%;
+  background-color: rgba(0,0,0,.7);
+  padding:25px;
+  width: 320px;
+  color: white;
+  border: 5px solid black;
+}
+.login input[type='text'], .login input[type='password']{
   display: block;
   position: relative;
   border: none;
@@ -26,8 +33,17 @@ body{
   background: none;
   color: white;
   z-index: 2;
+}
+.signup input[type='text'], .signup input[type='password'], .signup input[type='email']{
+  display: block;
+  position: relative;
+  border: none;
 
-
+  border-bottom: 2px solid white;
+  width: 100%;
+  background: none;
+  color: white;
+  z-index: 2;
 }
 
 #btn0{
@@ -36,7 +52,7 @@ body{
 }
 ::placeholder{
   color: white;
-  
+
 }
 .form-inline input[type='text'], .form-inline input[type='password']{
   border: none;
@@ -58,16 +74,16 @@ label{
 }
 input:focus, input:valid{
     outline: none;
-    
-    
-    
+
+
+
 }
 input:focus + label, input:valid + label{
     top: -40px;
     font-size: 11px;
     color: aqua;
-    
-    
+
+
 }
 #welcome{
     width: 100$;

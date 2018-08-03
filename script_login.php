@@ -28,7 +28,7 @@ else {
 }
 else {
       echo "User not found.";
-      echo $count;
+      header("Location:rempass.php?id=$uname");
 }
 
 }
