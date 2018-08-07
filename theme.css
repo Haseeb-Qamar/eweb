@@ -7,12 +7,13 @@ body{
 }
 .signup{
   margin: 0 auto;
-  margin-top: 10%;
-  background-color: rgba(0,0,0,.7);
+  margin-top: 5%;
+  background-color: rgba(0,0,0,.9);
   padding:25px;
   width: 320px;
   color: white;
   border: 5px solid black;
+  border-radius: 1em;
 }
 .login{
   margin: 0 auto;
@@ -27,8 +28,8 @@ body{
   display: block;
   position: relative;
   border: none;
-  
-  border-bottom: 2px solid white;
+
+  border-bottom: 1px solid white;
   width: 100%;
   background: none;
   color: white;
@@ -39,10 +40,10 @@ body{
   position: relative;
   border: none;
 
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
   width: 100%;
   background: none;
-  color: white;
+  color: gray;
   z-index: 2;
 }
 
@@ -64,6 +65,7 @@ body{
 }
 label{
     display: block;
+    color: gray;
     position: relative;
     top: -20px;
     left: 0px;
@@ -76,15 +78,23 @@ input:focus, input:valid{
     outline: none;
 
 
-
 }
 input:focus + label, input:valid + label{
     top: -40px;
+    text-transform: uppercase;
     font-size: 11px;
-    color: aqua;
+    color: white;
 
 
 }
 #welcome{
     width: 100$;
+}
+.tick{
+  color: orange;
+  position: relative;
+  float: right;
+}
+#email{
+  width: 90%;
 }

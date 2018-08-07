@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bs/css/bootstrap.css">
     <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <script type="text/javascript" src="bs/js/bootstrap.js">
     </script>
     <title>Login</title>
@@ -27,19 +28,24 @@
 </nav>
     <div class="container">
       <div class="row">
+
         <div class="signup">
           <p class="text-center headings">Sign-Up</p>
-              <form action="script_add_user.php" method="post">
-            <input type="text" name="fn" value="" required autocomplete="off" >
+              <form name="signupform" action="script_add_user.php" method="post">
+
+            <input id="fnfield" type="text" name="fn" value=""  required autocomplete="off" >
             <label for="fn">First Name</label>
+
             <input type="text" name="ln" value="" required autocomplete="off">
             <label for="ln">Last Name</label>
+
             <input type="password" name="pwd" value="" required autocomplete="off">
             <label for="pwd">Password</label>
-            <input onkeyup="validateEmail(this.value)" type="text" name="email" value="" required autocomplete="off">
+            <span id="icontag" class="tick"><i class='fas fa-exclamation-circle' title='Enter Email'></i></span>
+            <input id="email" onfocusout="validateEmail(this.value)" type="text" name="email" value="" required autocomplete="off">
             <label for="email" >Email</label>
-            <span id="checkmail" class="" >Email Taken</span>
-            <p class="text-center"><span style="display:none;" id="msg"></span> <br><input id="btn0" type="submit" name="" value="Sign-Up" class="btn btn-outline-light btn-sm"></p></form>
+            <p id="checkmail" class="" ></p>
+            <p class="text-center"><input id="btn0" type="submit" name="" value="Sign-Up" class="btn btn-outline-light btn-sm"></p></form>
 
 
 
@@ -47,32 +53,46 @@
       </div>
     </div>
     <script>
+
     function validateEmail(value){
+
+
       if (value.length == 0 ) {
-        document.getElementById('checkmail').innerHTML = "in if";
+        var icon = document.getElementById('icontag');
+        icon.innerHTML = "<i class='fas fa-exclamation-circle' title='Enter Email'></i>";
+        icon.style.color="orange";
+        document.signupform.email.style.borderBottom="1px solid white";
+        document.getElementById('checkmail').innerHTML = "";
         return;
       }else {
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-            document.getElementById('checkmail').innerHTML = this.responseText;
+
+            if (this.responseText == 'available') {
+              var icon = document.getElementById('icontag');
+              icon.style.display="block";
+              icon.style.color="green";
+              document.signupform.email.style.borderBottom="1px solid green";
+              icon.innerHTML = "<i class='fas fa-check-circle' title='Email Available'></i>";
+            }
+            if (this.responseText == 'unavailable') {
+              var icon = document.getElementById('icontag');
+              icon.style.display="block";
+              icon.style.color="red";
+              document.signupform.email.style.borderBottom="1px solid red";
+              icon.innerHTML = "<i class='fas fa-times-circle' title='Email Already Registered'></i>";
+            }
           }
         };
-        document.getElementById('checkmail').innerHTML = "in function";
+
         xmlhttp.open("GET", "validate_email.php?q=" + value, true);
         xmlhttp.send();
       }
     }
     function starter(){
 
-    var code = <?php echo $msg ?>;
-
-    if(code == 1){
-        var m = document.getElementById('msg');
-        m.innerHTML='Account Does Not Exist!';
-        m.style.display="inline";
-    }
     }
 
     </script>

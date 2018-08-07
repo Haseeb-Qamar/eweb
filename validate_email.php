@@ -11,9 +11,9 @@ while ($test = $result->fetch_assoc()) {
 
 }
 if ($count > 0 ) {
-  echo "Email Already Registered.";
+    echo "unavailable";
 }
 if ($count == 0) {
-  echo "Email is Available.";
+  echo "available";
 }
 ?>
