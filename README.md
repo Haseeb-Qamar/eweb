@@ -1,2 +1,2 @@
 # eweb
-E-commerce Website First Go..
+E-Commerce Web

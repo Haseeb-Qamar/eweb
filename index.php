@@ -17,21 +17,24 @@
     </script>
     <title>Login</title>
   </head>
-  <body onload="starter()">
+  <body>
     <nav class="navbar navbar-default justify-content-between" style="background-color:rgba(0,0,0,.9);color:white;">
   <a class="navbar-brand">E-WEB</a>
   <form class="form-inline" method="post" action="script_login.php">
-    <input type="text" name="uname" value="" placeholder="UserName">
+    <input type="text" name="uname" value="" placeholder="E-mail" autocomplete="off">
     <input type="password" name="password" value="" placeholder="Password">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
   </form>
 </nav>
+
     <div class="container">
       <div class="row">
 
         <div class="signup">
+
           <p class="text-center headings">Sign-Up</p>
-              <form name="signupform" action="script_add_user.php" method="post">
+<div id="msg1" class="mesg">Error!<br>Email Already Registered</div>
+              <form name="signupform" action="script_add_user.php" onsubmit="return redirect()" method="post">
 
             <input id="fnfield" type="text" name="fn" value=""  required autocomplete="off" >
             <label for="fn">First Name</label>
@@ -41,8 +44,11 @@
 
             <input type="password" name="pwd" value="" required autocomplete="off">
             <label for="pwd">Password</label>
-            <span id="icontag" class="tick"><i class='fas fa-exclamation-circle' title='Enter Email'></i></span>
+
+            <span id="icontag" onmouseover="mouseovericon(this)" onmouseout="mouseawayicon(this)"class="tick"> <img src="assets/exca.png" alt=""> </span>
+
             <input id="email" onfocusout="validateEmail(this.value)" type="text" name="email" value="" required autocomplete="off">
+
             <label for="email" >Email</label>
             <p id="checkmail" class="" ></p>
             <p class="text-center"><input id="btn0" type="submit" name="" value="Sign-Up" class="btn btn-outline-light btn-sm"></p></form>
@@ -50,16 +56,26 @@
 
 
         </div>
+
       </div>
     </div>
     <script>
-
+var check = 0;
+    function redirect(){
+      if (check == 1) {
+        return true;
+      }
+      if (check == 0) {
+        alert("Email is already registered!");
+        return false;
+      }
+    }
     function validateEmail(value){
 
 
       if (value.length == 0 ) {
         var icon = document.getElementById('icontag');
-        icon.innerHTML = "<i class='fas fa-exclamation-circle' title='Enter Email'></i>";
+        icon.innerHTML = "<img src='assets/exca.png' alt='Enter Email'>";
         icon.style.color="orange";
         document.signupform.email.style.borderBottom="1px solid white";
         document.getElementById('checkmail').innerHTML = "";
@@ -75,25 +91,33 @@
               icon.style.display="block";
               icon.style.color="green";
               document.signupform.email.style.borderBottom="1px solid green";
-              icon.innerHTML = "<i class='fas fa-check-circle' title='Email Available'></i>";
+              icon.innerHTML = "<img src='assets/check.png' alt='Enter Email'>";
+              check = 1;
             }
             if (this.responseText == 'unavailable') {
               var icon = document.getElementById('icontag');
               icon.style.display="block";
               icon.style.color="red";
               document.signupform.email.style.borderBottom="1px solid red";
-              icon.innerHTML = "<i class='fas fa-times-circle' title='Email Already Registered'></i>";
+              icon.innerHTML = "<img src='assets/cross.png' alt='Enter Email'>";
+              document.getElementById('msg1').innerHTML="Error!";
+              check = 0
             }
           }
+
         };
 
         xmlhttp.open("GET", "validate_email.php?q=" + value, true);
         xmlhttp.send();
       }
     }
-    function starter(){
+    function mouseovericon(x){
 
     }
+    function mouseawayicon(x){
+
+    }
+
 
     </script>
   </body>

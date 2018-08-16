@@ -91,10 +91,22 @@ input:focus + label, input:valid + label{
     width: 100$;
 }
 .tick{
-  color: orange;
+  color: yellow;
   position: relative;
   float: right;
 }
+.mesg{
+  background-color: rgba(0,0,0,.7);
+  border-radius: 1em;
+  border: 1px solid white;
+  padding: 10px;
+  color: red;
+  position: relative;
+  left: 120%;
+  top: 50%;
+
+
+}
 #email{
-  width: 90%;
+  width: 85%;
 }
