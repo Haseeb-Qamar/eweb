@@ -15,7 +15,7 @@ else {
 
 }
 
-$query = "SELECT username, password FROM users WHERE username = '$uname' and password = '$password'";
+$query = "SELECT email, pwd FROM users WHERE email = '$uname' and pwd = '$password'";
 $result = $conn->query($query);
   if ($result == FALSE) {
       echo "ERROR: " . mysqli_error($conn);
