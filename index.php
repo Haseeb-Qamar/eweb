@@ -17,7 +17,7 @@
     </script>
     <title>Login</title>
   </head>
-  <body>
+  <body onload="showdate()">
     <nav class="navbar navbar-default justify-content-between" style="background-color:rgba(0,0,0,.9);color:white;">
   <a class="navbar-brand">E-WEB</a>
   <form class="form-inline" method="post" action="script_login.php">
@@ -48,8 +48,7 @@
             <input type="text" name="uname" value="" required autocomplete="off">
             <label for="pwd">User Name</label>
 
-            <span id="icontag" onmouseover="mouseovericon(this)" onmouseout="mouseawayicon(this)"class="tick"> <img src="assets/exca.png" alt="Enter Email" title="Enter Email">
-            <div id="msg1" class="mesg">Email Already Registered</div> </span>
+            <span id="icontag" class="tick"> <div id="msg1" class="mesg">Email Already Registered</div> </span>
             <input id="email" onfocusout="validateEmail(this.value)" type="text" name="email" value="" required autocomplete="off">
 
             <label for="email" >Email</label>
@@ -61,15 +60,20 @@
         </div>
 
       </div>
+
+    </div>
+    <div class="marquee">
+      <marquee scrollamount=15 > <span id="marquee"></span> </marquee>
     </div>
     <script>
 var check = 0;
+var email = 0;
     function redirect(){
       if (check == 1) {
         return true;
       }
       if (check == 0) {
-        alert("Email is already registered!");
+        alert("Error! Email Validation Failed.");
         return false;
       }
     }
@@ -78,8 +82,8 @@ var check = 0;
       var atcount = 0;
       if (value.length == 0 ) {
         var icon = document.getElementById('icontag');
-        icon.innerHTML = "<img src='assets/exca.png' title='Enter Email'>";
-        icon.style.color="orange";
+        icon.innerHTML = "";
+        document.getElementById('email').style.width="100%";
         document.signupform.email.style.borderBottom="1px solid white";
         document.getElementById('checkmail').innerHTML = "";
         return;
@@ -104,6 +108,7 @@ var check = 0;
                   var icon = document.getElementById('icontag');
                   icon.style.display="block";
                   icon.style.color="green";
+                  document.getElementById('email').style.width="85%";
                   document.signupform.email.style.borderBottom="1px solid green";
                   icon.innerHTML = "<img src='assets/check.png'  title='Email Available'>";
                   check = 1;
@@ -112,8 +117,9 @@ var check = 0;
                   var icon = document.getElementById('icontag');
                   icon.style.display="block";
                   icon.style.color="red";
+                  document.getElementById('email').style.width="85%";
                   document.signupform.email.style.borderBottom="1px solid red";
-                  icon.innerHTML = "<img src='assets/cross.png' title='Email Unavailable'><div id='msg1' class='mesg text-center' style = 'display:block;'>Email Already Registered</div>";
+                  icon.innerHTML = "<img src='assets/cross.png' title='Email Unavailable'></span><div id='msg1'><img class='imgmsg' src='assets/msg.png' onclick='hide(this)'></div>";
 
                   check = 0;
                 }
@@ -126,7 +132,9 @@ var check = 0;
           }else {
             var icon = document.getElementById('icontag');
             icon.style.display="block";
-            icon.innerHTML = "<img src='assets/cross.png' title='Email Unavailable'><div id='msg1' class='mesg text-center' style = 'display:block;'>Invalid Email</div>";
+            document.getElementById('email').style.width="85%";
+            icon.innerHTML = "<img src='assets/cross.png' title='Email Unavailable'></span><div id='msg1'><img class='imgmsg' src='assets/invalid.png' onclick='hide(this)'></div>";
+            email = 0;
 
           }
 
@@ -134,10 +142,16 @@ var check = 0;
 
 
     }
-    function mouseovericon(x){
+    function hide(x){
 
+      x.style.display="none";
     }
-    function mouseawayicon(x){
+    function showdate(){
+      n = new Date();
+      y = n.getFullYear();
+      m = n.getMonth() + 1;
+      d = n.getDate();
+      document.getElementById("marquee").innerHTML = m + "/" + d + "/" + y;
 
     }
 

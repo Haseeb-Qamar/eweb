@@ -106,15 +106,18 @@ input:focus + label, input:valid + label{
   left: 80px;
   width:200px;
   top: -5px;
-
   display: none;
-
-
-
-
 }
-#email{
-  width: 85%;
 
-
+.imgmsg{
+  position: absolute;
+  top: 25px;
+  left: -48px;
+}
+.marquee{
+  border-top: 5px solid rgba(255,255,255,.4);
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
 }
