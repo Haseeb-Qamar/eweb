@@ -10,10 +10,11 @@ body{
   margin-top: 5%;
   background-color: rgba(0,0,0,.9);
   padding:25px;
-  width: 320px;
+  width: 360px;
   color: white;
   border: 5px solid black;
   border-radius: 1em;
+  box-shadow: 8px 8px 5px rgb(10, 10, 10);
 }
 .login{
   margin: 0 auto;
@@ -39,7 +40,7 @@ body{
   display: block;
   position: relative;
   border: none;
-
+  margin-bottom: 20px;
   border-bottom: 1px solid white;
   width: 100%;
   background: none;
@@ -67,7 +68,7 @@ label{
     display: block;
     color: gray;
     position: relative;
-    top: -20px;
+    top: -40px;
     left: 0px;
     z-index: 1;
     transition: all 0.3s ease;
@@ -80,8 +81,8 @@ input:focus, input:valid{
 
 }
 input:focus + label, input:valid + label{
-    top: -40px;
-    text-transform: uppercase;
+    top: -60px;
+
     font-size: 11px;
     color: white;
 
@@ -101,12 +102,19 @@ input:focus + label, input:valid + label{
   border: 1px solid white;
   padding: 10px;
   color: red;
-  position: relative;
-  left: 120%;
-  top: 50%;
+  position: absolute;
+  left: 80px;
+  width:200px;
+  top: -5px;
+
+  display: none;
+
+
 
 
 }
 #email{
   width: 85%;
+
+
 }

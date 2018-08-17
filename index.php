@@ -33,7 +33,7 @@
         <div class="signup">
 
           <p class="text-center headings">Sign-Up</p>
-<div id="msg1" class="mesg">Error!<br>Email Already Registered</div>
+
               <form name="signupform" action="script_add_user.php" onsubmit="return redirect()" method="post">
 
             <input id="fnfield" type="text" name="fn" value=""  required autocomplete="off" >
@@ -45,12 +45,15 @@
             <input type="password" name="pwd" value="" required autocomplete="off">
             <label for="pwd">Password</label>
 
-            <span id="icontag" onmouseover="mouseovericon(this)" onmouseout="mouseawayicon(this)"class="tick"> <img src="assets/exca.png" alt=""> </span>
+            <input type="text" name="uname" value="" required autocomplete="off">
+            <label for="pwd">User Name</label>
 
+            <span id="icontag" onmouseover="mouseovericon(this)" onmouseout="mouseawayicon(this)"class="tick"> <img src="assets/exca.png" alt="Enter Email" title="Enter Email">
+            <div id="msg1" class="mesg">Email Already Registered</div> </span>
             <input id="email" onfocusout="validateEmail(this.value)" type="text" name="email" value="" required autocomplete="off">
 
             <label for="email" >Email</label>
-            <p id="checkmail" class="" ></p>
+
             <p class="text-center"><input id="btn0" type="submit" name="" value="Sign-Up" class="btn btn-outline-light btn-sm"></p></form>
 
 
@@ -72,44 +75,64 @@ var check = 0;
     }
     function validateEmail(value){
 
-
+      var atcount = 0;
       if (value.length == 0 ) {
         var icon = document.getElementById('icontag');
-        icon.innerHTML = "<img src='assets/exca.png' alt='Enter Email'>";
+        icon.innerHTML = "<img src='assets/exca.png' title='Enter Email'>";
         icon.style.color="orange";
         document.signupform.email.style.borderBottom="1px solid white";
         document.getElementById('checkmail').innerHTML = "";
         return;
       }else {
+        var email = document.getElementById('email');
 
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
+        for (var i = 0; i < email.value.length; i++) {
 
-            if (this.responseText == 'available') {
-              var icon = document.getElementById('icontag');
-              icon.style.display="block";
-              icon.style.color="green";
-              document.signupform.email.style.borderBottom="1px solid green";
-              icon.innerHTML = "<img src='assets/check.png' alt='Enter Email'>";
-              check = 1;
-            }
-            if (this.responseText == 'unavailable') {
-              var icon = document.getElementById('icontag');
-              icon.style.display="block";
-              icon.style.color="red";
-              document.signupform.email.style.borderBottom="1px solid red";
-              icon.innerHTML = "<img src='assets/cross.png' alt='Enter Email'>";
-              document.getElementById('msg1').innerHTML="Error!";
-              check = 0
-            }
+          if (email.value[i] == '@') {
+            atcount++;
+
           }
 
-        };
 
-        xmlhttp.open("GET", "validate_email.php?q=" + value, true);
-        xmlhttp.send();
-      }
+          }
+          if (atcount == 1) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+
+                if (this.responseText == 'available') {
+                  var icon = document.getElementById('icontag');
+                  icon.style.display="block";
+                  icon.style.color="green";
+                  document.signupform.email.style.borderBottom="1px solid green";
+                  icon.innerHTML = "<img src='assets/check.png'  title='Email Available'>";
+                  check = 1;
+                }
+                if (this.responseText == 'unavailable') {
+                  var icon = document.getElementById('icontag');
+                  icon.style.display="block";
+                  icon.style.color="red";
+                  document.signupform.email.style.borderBottom="1px solid red";
+                  icon.innerHTML = "<img src='assets/cross.png' title='Email Unavailable'><div id='msg1' class='mesg text-center' style = 'display:block;'>Email Already Registered</div>";
+
+                  check = 0;
+                }
+              }
+
+            };
+
+            xmlhttp.open("GET", "validate_email.php?q=" + value, true);
+            xmlhttp.send();
+          }else {
+            var icon = document.getElementById('icontag');
+            icon.style.display="block";
+            icon.innerHTML = "<img src='assets/cross.png' title='Email Unavailable'><div id='msg1' class='mesg text-center' style = 'display:block;'>Invalid Email</div>";
+
+          }
+
+        }
+
+
     }
     function mouseovericon(x){
 

@@ -13,7 +13,10 @@ if(isset($_POST['pwd'])){
 if(isset($_POST['email'])){
     $email = $_POST['email'];
 }
-$query = "INSERT INTO users (fn,ln,pwd,email) values('$fn','$ln','$pwd','$email')";
+if(isset($_POST['uname'])){
+    $uname = $_POST['uname'];
+}
+$query = "INSERT INTO users (fn,ln,uname,pwd,email) values('$fn','$ln','$uname','$pwd','$email')";
 $result = $conn->query($query);
     if ($result == FALSE){
         echo "ERROR: " . mysqli_error($conn);
